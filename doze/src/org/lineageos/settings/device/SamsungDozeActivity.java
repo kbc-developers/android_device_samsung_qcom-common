@@ -13,22 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cyanogenmod.settings.device;
+package org.lineageos.settings.device;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 
-import com.android.settingslib.drawer.SettingsDrawerActivity;
-
-public class SamsungDozeActivity extends SettingsDrawerActivity {
+public class SamsungDozeActivity extends PreferenceActivity {
 
     private static final String TAG = "samsung_doze";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getFragmentManager().beginTransaction().replace(R.id.content_frame,
+        getFragmentManager().beginTransaction().replace(android.R.id.content,
                 new TouchscreenGestureSettings(), TAG).commit();
     }
 }

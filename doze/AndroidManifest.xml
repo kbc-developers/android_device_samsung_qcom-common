@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cyanogenmod.settings.device"
+    package="org.lineageos.settings.device"
     android:versionCode="1"
     android:versionName="1.0"
     android:sharedUserId="android.uid.system">
@@ -10,38 +10,35 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
+
     <uses-sdk
-        android:minSdkVersion="21"
-        android:targetSdkVersion="21"/>
+        android:minSdkVersion="24"
+        android:targetSdkVersion="26"/>
 
     <application
         android:label="@string/device_settings_app_name"
         android:persistent="true">
 
-        <receiver android:name="com.cyanogenmod.settings.device.BootCompletedReceiver">
+        <receiver android:name=".BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
-        <service android:name="com.cyanogenmod.settings.device.SamsungDozeService"
+        <service android:name=".SamsungDozeService"
                  android:permission="SamsungDozeService">
         </service>
 
         <activity
             android:name=".SamsungDozeActivity"
-            android:label="@string/screen_gestures_panel_title"
-            android:theme="@style/SamsungDozeSettings">
+            android:label="@string/ambient_display_title"
+            android:theme="@style/Theme.Main">
             <intent-filter>
-                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+                <action android:name="org.lineageos.settings.device.DOZE_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.device" />
-            <meta-data
-                android:name="com.android.settings.icon"
-                android:resource="@drawable/ic_settings_gestures" />
         </activity>
 
     </application>
